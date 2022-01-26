@@ -1,24 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: webappcolor
+  name: simple-webapp-color
   labels:
-    app: hostname
+    app: web
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: hostname
-  template:
-    metadata:
-      labels:
-        app: hostname
-    spec:
-      containers:
-      - name: container-webapp-name
-        image: mmumshad/simple-webapp-color:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: color
-          value: green
+  containers:
+  - name: web
+    image: mmumshad/simple-webapp-color
+    ports:
+      - containerPort: 8080
+    env:
+      - name: APP_COLOR
+        value: red
